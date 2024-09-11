@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F1B86EF52C921CC900085E3A /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B86EF22C921CC900085E3A /* OnboardingView.swift */; };
+		F1B86EF62C921CC900085E3A /* OnboardingViewDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B86EF32C921CC900085E3A /* OnboardingViewDetails.swift */; };
 		F1D9749A2C91B4C6006E028E /* SketchGalleryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D974992C91B4C6006E028E /* SketchGalleryApp.swift */; };
 		F1D9749C2C91B4C6006E028E /* GalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D9749B2C91B4C6006E028E /* GalleryView.swift */; };
 		F1D9749E2C91B4C7006E028E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1D9749D2C91B4C7006E028E /* Assets.xcassets */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F1B86EF22C921CC900085E3A /* OnboardingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		F1B86EF32C921CC900085E3A /* OnboardingViewDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewDetails.swift; sourceTree = "<group>"; };
 		F1D974962C91B4C6006E028E /* SketchGallery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SketchGallery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1D974992C91B4C6006E028E /* SketchGalleryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SketchGalleryApp.swift; sourceTree = "<group>"; };
 		F1D9749B2C91B4C6006E028E /* GalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryView.swift; sourceTree = "<group>"; };
@@ -42,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F1B86EF42C921CC900085E3A /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F1B86EF22C921CC900085E3A /* OnboardingView.swift */,
+				F1B86EF32C921CC900085E3A /* OnboardingViewDetails.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		F1D9748D2C91B4C6006E028E = {
 			isa = PBXGroup;
 			children = (
@@ -62,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				F1D974992C91B4C6006E028E /* SketchGalleryApp.swift */,
+				F1B86EF42C921CC900085E3A /* Onboarding */,
 				F1D974B42C91D08E006E028E /* Gallery */,
 				F1D974AF2C91BB6C006E028E /* EditSketchView.swift */,
 				F1D974AD2C91B7A5006E028E /* GalleryDetailView.swift */,
@@ -181,7 +195,9 @@
 				F1D974AE2C91B7A5006E028E /* GalleryDetailView.swift in Sources */,
 				F1D974B02C91BB6C006E028E /* EditSketchView.swift in Sources */,
 				F1D9749A2C91B4C6006E028E /* SketchGalleryApp.swift in Sources */,
+				F1B86EF52C921CC900085E3A /* OnboardingView.swift in Sources */,
 				F1D974AC2C91B65D006E028E /* ImageHelper.swift in Sources */,
+				F1B86EF62C921CC900085E3A /* OnboardingViewDetails.swift in Sources */,
 				F1D974B32C91C594006E028E /* TextHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

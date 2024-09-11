@@ -10,10 +10,18 @@ import SwiftUI
 @main
 struct SketchGalleryApp: App {
     
+    @AppStorage("onboarding") var needsOnboarding = true
+    
     var body: some Scene {
         WindowGroup {
             GalleryView()
                 .modelContainer(for: Sketch.self)
+                .fullScreenCover(isPresented: $needsOnboarding) {
+                    // on dismiss
+                    needsOnboarding = false
+                } content: {
+                    OnboardingView()
+                }
         }
     }
 }
