@@ -19,7 +19,6 @@ struct EditSketchView: View {
     @State private var imageData: Data? = nil
     @State private var showConfirmation: Bool = false
     
-    
     var body: some View {
         ZStack {
             
@@ -99,11 +98,9 @@ struct EditSketchView: View {
                 }
                 
                 Button{
-                    // Guarda la imagen localmente y obtén su nombre
                     guard let imageData = imageData else { return }
                     let imageName = UUID().uuidString
                     
-                    // LLamar a ImageHelper para almacenar la imagen reescalada
                     ImageHelper.saveImage(imageData, withName: imageName)
                     
                     sketch.imageName = imageName
