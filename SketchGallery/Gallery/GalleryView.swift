@@ -15,9 +15,9 @@ struct GalleryView: View {
     
     
     let columns: [GridItem] = [
-        GridItem(.flexible(), spacing: 10),
-        GridItem(.flexible(), spacing: 10),
-        GridItem(.flexible(), spacing: 10)
+        GridItem(.flexible(), spacing: 5),
+        GridItem(.flexible(), spacing: 5),
+        GridItem(.flexible(), spacing: 5)
     ]
     
     var body: some View {
@@ -32,26 +32,26 @@ struct GalleryView: View {
                     
                     if sketches.count > 0 {
                         ScrollView(showsIndicators: false) {
-                            LazyVGrid(columns: columns, spacing: 10) {
+                            LazyVGrid(columns: columns, spacing: 20) {
                                 ForEach(sketches, id: \.id) { sketch in
                                     Group {
                                         if let imagePath = ImageHelper.getFullPathForImage(sketch.imageName),
                                            let uiImage = UIImage(contentsOfFile: imagePath.path) {
                                             Image(uiImage: uiImage)
                                                 .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(maxWidth: .infinity)
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 120, height: 120)
+                                                .clipped()
                                                 .cornerRadius(10)
-                                                .shadow(radius: 10)
-                                                .padding()
+                                                .shadow(radius: 3)
                                         } else {
                                             Image("default")
                                                 .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .frame(maxWidth: .infinity)
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 120, height: 120)
+                                                .clipped()
                                                 .cornerRadius(10)
-                                                .shadow(radius: 10)
-                                                .padding()
+                                                .shadow(radius: 3)
                                         }
                                     }
                                     .onTapGesture {
@@ -81,7 +81,7 @@ struct GalleryView: View {
                         Spacer()
                     }
                 }
-                .padding(.horizontal)
+                .padding(.horizontal, 10)
                 .ignoresSafeArea()
                 
                 if sketches.count > 0 {
