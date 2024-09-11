@@ -19,47 +19,70 @@ struct EditSketchView: View {
     @State private var imageData: Data? = nil
     @State private var showConfirmation: Bool = false
     
+    
     var body: some View {
         ZStack {
-            Color.black.ignoresSafeArea()
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 10) {
+                
+                Text(isEditMode ? "Edit Sketch" : "New Sketch")
+                    .font(.largeTitle)
+                    .padding(.bottom, 20)
+                    .padding(.top, 20)
+                    .bold()
+                
                 HStack {
                     Spacer()
                     
                     ZStack {
-                        if let imageData = imageData, let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height: 200)
-                                .cornerRadius(10)
-                        }
 
+                        
                         PhotosPicker(selection: $selectedImage, matching: .images) {
-                            Text("Select Image")
+                            if(imageData == nil) {
+                                Label("Select Image", systemImage: "photo")
+                                    .labelStyle(.iconOnly)
+                                    .foregroundStyle(.white)
+                                    .frame(width: 200, height: 200)
+                                    .background(Color.blue.opacity(0.8))
+                                    .cornerRadius(10)
+                            }else {
+                                if let imageData = imageData, let uiImage = UIImage(data: imageData) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 200)
+                                        .cornerRadius(10)
+                                }
+                            }
                         }
                         .onChange(of: selectedImage) { previousItem, newItem in
                             Task {
                                 await loadImage(from: newItem)
                             }
                         }
+                        
+
+                        
+                       
                     }
+                    Spacer()
                 }
-                Spacer()
+                .padding(.bottom, 20)
                 
-                
-                Text(isEditMode ? "Edit Sketch" : "New Sketch")
-                    .font(.largeTitle)
-                    .foregroundStyle(.white)
                 
                 TextField("Title", text: $sketchName)
                     .textFieldStyle(.roundedBorder)
-                    .padding()
+                    .onChange(of: sketchName) { oldValue, newValue in
+                        sketchName = TextHelper.limitChars(input: sketchName, limit: 30)
+                    }
+                
                 
                 TextField("Description", text: $sketchDesc, axis: .vertical)
                     .textFieldStyle(.roundedBorder)
-                    .padding()
+                    .onChange(of: sketchDesc) { oldValue, newValue in
+                        sketchDesc = TextHelper.limitChars(input: sketchDesc, limit: 300)
+                    }
+                    
                 
                 HStack {
                     Button(isEditMode ? "Save" : "Add") {
@@ -84,7 +107,8 @@ struct EditSketchView: View {
                     }
                     .buttonStyle(.borderedProminent)
                     .tint(.blue)
-                    .disabled(sketchName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    .disabled(sketchName.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || imageData == nil)
+                    .foregroundStyle(.white)
                     
                     if isEditMode {
                         Button("Delete") {
@@ -94,10 +118,12 @@ struct EditSketchView: View {
                         .tint(.red)
                     }
                 }
+                
                 Spacer()
+                
+                
             }
-            .padding(.horizontal)
-            .padding(.top)
+            .padding()
         }
         .confirmationDialog("Are you sure you want to delete this sketch?", isPresented: $showConfirmation) {
             Button("Delete", role: .destructive) {
@@ -110,6 +136,9 @@ struct EditSketchView: View {
         .onAppear {
             sketchName = sketch.title
             sketchDesc = sketch.desc
+            if let uiImage = ImageHelper.loadImage(named: sketch.imageName) {
+                imageData = uiImage.jpegData(compressionQuality: 1.0)
+            }
         }
     }
     

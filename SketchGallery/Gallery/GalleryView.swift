@@ -23,102 +23,106 @@ struct GalleryView: View {
     var body: some View {
         
         NavigationStack {
-            ZStack() {
-                VStack(alignment: .leading) {
-                    Text("Sketches")
-                        .font(.largeTitle)
-                        .padding(.top, 70)
-                        .bold()
-                    
-                    if sketches.count > 0 {
-                        ScrollView(showsIndicators: false) {
-                            LazyVGrid(columns: columns, spacing: 20) {
-                                ForEach(sketches, id: \.id) { sketch in
-                                    Group {
-                                        if let imagePath = ImageHelper.getFullPathForImage(sketch.imageName),
-                                           let uiImage = UIImage(contentsOfFile: imagePath.path) {
-                                            Image(uiImage: uiImage)
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 120, height: 120)
-                                                .clipped()
-                                                .cornerRadius(10)
-                                                .shadow(radius: 3)
-                                        } else {
-                                            Image("default")
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 120, height: 120)
-                                                .clipped()
-                                                .cornerRadius(10)
-                                                .shadow(radius: 3)
+            
+            ZStack {
+                ZStack() {
+                    VStack(alignment: .leading) {
+                        Text("Sketches")
+                            .font(.largeTitle)
+                            .padding(.top, 70)
+                            .bold()
+                        
+                        if sketches.count > 0 {
+                            ScrollView(showsIndicators: false) {
+                                LazyVGrid(columns: columns, spacing: 20) {
+                                    ForEach(sketches, id: \.id) { sketch in
+                                        Group {
+                                            if let imagePath = ImageHelper.getFullPathForImage(sketch.imageName),
+                                               let uiImage = UIImage(contentsOfFile: imagePath.path) {
+                                                Image(uiImage: uiImage)
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 120, height: 120)
+                                                    .clipped()
+                                                    .cornerRadius(10)
+                                            } else {
+                                                Image("default")
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                                    .frame(width: 120, height: 120)
+                                                    .clipped()
+                                                    .cornerRadius(10)
+                                            }
                                         }
-                                    }
-                                    .onTapGesture {
-                                        selectedSketch = sketch
-                                    }
-                                    .onLongPressGesture {
-                                        newSketch = sketch
+                                        .onTapGesture {
+                                            selectedSketch = sketch
+                                        }
+                                        .onLongPressGesture {
+                                            newSketch = sketch
+                                        }
                                     }
                                 }
                             }
-                        }
-                        
-                        Spacer()
-                    }
-                    else {
-                        Spacer()
-                        
-                        HStack {
-                            Spacer()
-                            Button("Tap to add a new sketch") {
-                                newSketch = Sketch()
-                            }
-                            .buttonStyle(.bordered)
+                            
                             Spacer()
                         }
-                        
-                        Spacer()
-                    }
-                }
-                .padding(.horizontal, 10)
-                .ignoresSafeArea()
-                
-                if sketches.count > 0 {
-                    ZStack {
-                        HStack {
+                        else {
                             Spacer()
-                            VStack {
+                            
+                            HStack {
                                 Spacer()
-                                Button(action: {
-                                    //Todo: Add new Sketch
+                                Button("Tap to add a new sketch") {
                                     newSketch = Sketch()
-                                    
-                                }, label: {
-                                    ZStack {
-                                        Circle()
-                                            .frame(width: 70)
-                                            .opacity(0.7)
-                                        
-                                        Image(systemName: "plus")
-                                            .resizable()
-                                            .scaledToFit()
-                                            .frame(width: 30)
-                                            .foregroundStyle(.white)
-                                    }
-                                    .tint(.blue)
-                                })
+                                }
+                                .buttonStyle(.bordered)
+                                Spacer()
                             }
+                            
+                            Spacer()
                         }
-                        .padding()
                     }
+                    .padding(.horizontal, 10)
                     .ignoresSafeArea()
+                    
+                    if sketches.count > 0 {
+                        ZStack {
+                            HStack {
+                                Spacer()
+                                VStack {
+                                    Spacer()
+                                    Button(action: {
+                                        newSketch = Sketch()
+                                    }, label: {
+                                        ZStack {
+                                            Circle()
+                                                .frame(width: 70)
+                                                .opacity(0.7)
+                                            
+                                            Image(systemName: "plus")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 30)
+                                                .foregroundStyle(.white)
+                                        }
+                                        .tint(.blue)
+                                    })
+                                }
+                            }
+                            .padding()
+                        }
+                        .ignoresSafeArea()
+                    }
                 }
             }
+            .navigationDestination(item: $selectedSketch, destination: { sketch in
+                GalleryDetailView(sketch: sketch)
+            })
             .sheet(item: $newSketch) { sketch in
                 let isEdit = sketch.title.trimmingCharacters(in: .whitespacesAndNewlines) != ""
                 
                 EditSketchView(sketch: sketch, isEditMode: isEdit)
+                    .presentationDetents([.fraction(0.8)])
+                    .presentationDragIndicator(.visible)
             }
             
             
