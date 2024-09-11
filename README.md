@@ -39,6 +39,8 @@ Data persistence is handled using **SwiftData**, ensuring that all sketches are 
   - `TextHelper.swift`: Utility functions for processing and handling text.
 
 ## 📸 Screenshots
-![IMG_2710](https://github.com/user-attachments/assets/3155a439-8a91-4531-94d0-1c80f63344f3)
-![IMG_2711](https://github.com/user-attachments/assets/8d970647-861d-4e43-aab5-182e634b9625)
-![IMG_2712](https://github.com/user-attachments/assets/6fe5edb1-bf77-470d-8bc4-d724de6ce2c1)
+![IMG_2710](https://github.com/user-attachments/assets/78be3a74-d5d5-49ae-a739-e66bf344557a)
+![IMG_2711](https://github.com/user-attachments/assets/bd024f75-21cb-45f1-b700-2456a16efddc)
+![IMG_2712](https://github.com/user-attachments/assets/1a05d89d-04fb-49fc-962a-a691f523bd08)
+
+
