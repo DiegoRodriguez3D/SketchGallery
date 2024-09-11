@@ -11,7 +11,8 @@ import SwiftUI
 struct SketchGalleryApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            GalleryView()
+                .modelContainer(for: Sketch.self)
         }
     }
 }
