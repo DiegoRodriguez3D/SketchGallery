@@ -9,10 +9,11 @@ import SwiftUI
 import SwiftData
 
 struct GalleryView: View {
+    @Environment(\.modelContext) private var context
+    
     @State private var newSketch: Sketch?
     @State private var selectedSketch: Sketch?
     @Query private var sketches: [Sketch]
-    
     
     let columns: [GridItem] = [
         GridItem(.flexible(), spacing: 5),
@@ -21,7 +22,6 @@ struct GalleryView: View {
     ]
     
     var body: some View {
-        
         NavigationStack {
             
             ZStack {
@@ -45,6 +45,7 @@ struct GalleryView: View {
                                                     .frame(width: 120, height: 120)
                                                     .clipped()
                                                     .cornerRadius(10)
+                                                    .shadow(radius: 5, x:5, y:5)
                                             } else {
                                                 Image("default")
                                                     .resizable()
@@ -52,6 +53,7 @@ struct GalleryView: View {
                                                     .frame(width: 120, height: 120)
                                                     .clipped()
                                                     .cornerRadius(10)
+                                                    .shadow(radius: 5, x:5, y:5)
                                             }
                                         }
                                         .onTapGesture {
@@ -101,14 +103,14 @@ struct GalleryView: View {
                                             Image(systemName: "plus")
                                                 .resizable()
                                                 .scaledToFit()
-                                                .frame(width: 30)
-                                                .foregroundStyle(.white)
+                                                .frame(width: 25)
+                                                .foregroundStyle(.black)
                                         }
-                                        .tint(.blue)
+                                        .tint(.yellow)
                                     })
                                 }
                             }
-                            .padding()
+                            .padding(25)
                         }
                         .ignoresSafeArea()
                     }
@@ -117,6 +119,7 @@ struct GalleryView: View {
             .navigationDestination(item: $selectedSketch, destination: { sketch in
                 GalleryDetailView(sketch: sketch)
             })
+            .navigationTitle("")
             .sheet(item: $newSketch) { sketch in
                 let isEdit = sketch.title.trimmingCharacters(in: .whitespacesAndNewlines) != ""
                 
@@ -124,11 +127,8 @@ struct GalleryView: View {
                     .presentationDetents([.fraction(0.8)])
                     .presentationDragIndicator(.visible)
             }
-            
-            
         }
-        .navigationTitle("Sketches")
-        .navigationBarTitleDisplayMode(.large)
+        .tint(.yellow)
         .ignoresSafeArea()
     }
 }

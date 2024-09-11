@@ -9,6 +9,7 @@ import SwiftUI
 
 @main
 struct SketchGalleryApp: App {
+    
     var body: some Scene {
         WindowGroup {
             GalleryView()

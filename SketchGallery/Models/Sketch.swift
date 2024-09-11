@@ -19,4 +19,12 @@ class Sketch {
     init() {
         id = UUID().uuidString
     }
+    
+    init(title: String, desc: String, date: Date, imageName: String) {
+        self.id = UUID().uuidString
+        self.title = title
+        self.desc = desc
+        self.date = Date()
+        self.imageName = imageName
+    }
 }
