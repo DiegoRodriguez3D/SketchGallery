@@ -14,7 +14,8 @@
 		F1D974A92C91B4D4006E028E /* Sketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D974A82C91B4D4006E028E /* Sketch.swift */; };
 		F1D974AC2C91B65D006E028E /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D974AB2C91B65D006E028E /* ImageHelper.swift */; };
 		F1D974AE2C91B7A5006E028E /* GalleryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D974AD2C91B7A5006E028E /* GalleryDetailView.swift */; };
-		F1D974B02C91BB6C006E028E /* AddSketch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D974AF2C91BB6C006E028E /* AddSketch.swift */; };
+		F1D974B02C91BB6C006E028E /* EditSketchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D974AF2C91BB6C006E028E /* EditSketchView.swift */; };
+		F1D974B32C91C594006E028E /* TextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1D974B22C91C594006E028E /* TextHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +27,8 @@
 		F1D974A82C91B4D4006E028E /* Sketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sketch.swift; sourceTree = "<group>"; };
 		F1D974AB2C91B65D006E028E /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		F1D974AD2C91B7A5006E028E /* GalleryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryDetailView.swift; sourceTree = "<group>"; };
-		F1D974AF2C91BB6C006E028E /* AddSketch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSketch.swift; sourceTree = "<group>"; };
+		F1D974AF2C91BB6C006E028E /* EditSketchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSketchView.swift; sourceTree = "<group>"; };
+		F1D974B22C91C594006E028E /* TextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +62,8 @@
 			isa = PBXGroup;
 			children = (
 				F1D974992C91B4C6006E028E /* SketchGalleryApp.swift */,
-				F1D9749B2C91B4C6006E028E /* GalleryView.swift */,
-				F1D974AF2C91BB6C006E028E /* AddSketch.swift */,
+				F1D974B42C91D08E006E028E /* Gallery */,
+				F1D974AF2C91BB6C006E028E /* EditSketchView.swift */,
 				F1D974AD2C91B7A5006E028E /* GalleryDetailView.swift */,
 				F1D974A72C91B4CE006E028E /* Models */,
 				F1D974AA2C91B655006E028E /* Helpers */,
@@ -91,8 +93,17 @@
 			isa = PBXGroup;
 			children = (
 				F1D974AB2C91B65D006E028E /* ImageHelper.swift */,
+				F1D974B22C91C594006E028E /* TextHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		F1D974B42C91D08E006E028E /* Gallery */ = {
+			isa = PBXGroup;
+			children = (
+				F1D9749B2C91B4C6006E028E /* GalleryView.swift */,
+			);
+			path = Gallery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,9 +179,10 @@
 				F1D974A92C91B4D4006E028E /* Sketch.swift in Sources */,
 				F1D9749C2C91B4C6006E028E /* GalleryView.swift in Sources */,
 				F1D974AE2C91B7A5006E028E /* GalleryDetailView.swift in Sources */,
-				F1D974B02C91BB6C006E028E /* AddSketch.swift in Sources */,
+				F1D974B02C91BB6C006E028E /* EditSketchView.swift in Sources */,
 				F1D9749A2C91B4C6006E028E /* SketchGalleryApp.swift in Sources */,
 				F1D974AC2C91B65D006E028E /* ImageHelper.swift in Sources */,
+				F1D974B32C91C594006E028E /* TextHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

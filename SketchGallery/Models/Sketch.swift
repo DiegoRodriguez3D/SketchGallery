@@ -14,7 +14,7 @@ class Sketch {
     var title: String = ""
     var desc: String = ""
     var date = Date()
-    var imagePath: String = ""
+    var imageName: String = ""
     
     init() {
         id = UUID().uuidString
